@@ -23,27 +23,33 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         Book::factory(33)->create()->each(function ($book){
-            $goodCount = random_int(5, 15);
-            $badCount = random_int(5, 15);
-            $averageCount = random_int(5, 15);
+            $count = random_int(5, 15);
 
             Review::factory()
-                ->count($goodCount)
+                ->count($count)
                 ->good()
                 ->for($book)
-                ->create();            
-            
+                ->create();
+        });
+
+        Book::factory(33)->create()->each(function ($book){
+            $count = random_int(5, 15);
+
             Review::factory()
-                ->count($badCount)
-                ->bad()
-                ->for($book)
-                ->create();             
-            
-            Review::factory()
-                ->count($averageCount)
+                ->count($count)
                 ->average()
                 ->for($book)
-                ->create(); 
+                ->create();
+        });
+
+        Book::factory(34)->create()->each(function ($book){
+            $count = random_int(5, 15);
+
+            Review::factory()
+                ->count($count)
+                ->bad()
+                ->for($book)
+                ->create();
         });
     }
 }
